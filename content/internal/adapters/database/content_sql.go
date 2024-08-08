@@ -17,21 +17,6 @@ func NewContentRepositorySqlite(db *sql.DB) *ContentRepositorySqlite {
 	return &ContentRepositorySqlite{db: db}
 }
 
-/*
-func (r *ContentRepositorySqlite) createTable() {
-	createTableSQL := `CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        email TEXT
-    );`
-	_, err := r.db.Exec(createTableSQL)
-	if err != nil {
-		log.Fatalf("Error creating table: %v", err)
-	}
-	fmt.Println("Table created successfully")
-}
-*/
-
 func (r *ContentRepositorySqlite) Create(title, username string) error {
 	insertSQL := `INSERT INTO content (title, username) VALUES (?, ?)`
 	result, err := r.db.Exec(insertSQL, title, username)
@@ -55,7 +40,7 @@ func (r *ContentRepositorySqlite) Get(id int64) (*core.Content, error) {
 			log.Fatalf("Error reading record: %v", err)
 		}
 	} else {
-		fmt.Printf("Record: ID=%d, Title=%s, Username=%s\n", &content.ID, &content.Title, &content.Username)
+		fmt.Printf("Record: ID=%s, Title=%s, Username=%s\n", content.ID, content.Title, content.Username)
 	}
 	return &content, nil
 }
