@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goba_user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: goba_user
+  template:
+    metadata:
+      labels:
+        app: goba_user
+    spec:
+      containers:
+      - name: goba_user
+        image: goba_user:latest
+        ports:
+        - containerPort: 8080

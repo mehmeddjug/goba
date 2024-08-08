@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  goba_user:
+    build:
+      context: ./users
+    ports:
+      - "8080:8080"
+
+  goba_content:
+    build:
+      context: ./content
+    ports:
+      - "8081:8081"
