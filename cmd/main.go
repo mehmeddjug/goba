@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 
-	"github.com/mehmeddjug/goba/internal/adapters"
 	"github.com/mehmeddjug/goba/internal/application"
 	"github.com/mehmeddjug/goba/internal/domain"
 	"github.com/mehmeddjug/goba/internal/infrastructure"
@@ -12,7 +11,7 @@ import (
 func main() {
 	// Initialize the in-memory repository and service
 	userRepo := infrastructure.NewUserRepositoryMemory()
-	userService := adapters.NewUserService(userRepo)
+	userService := domain.NewUserService(userRepo)
 
 	// Initialize handlers with the in-memory repositories
 	mux := http.NewServeMux()
